@@ -1,31 +1,41 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 
 type Props = {};
 
-export default function Navbar({}: Props) {
+type NavTagProps = { link: string; caption: string; icon?: string };
+
+const NavTag = ({ link, caption, icon }: NavTagProps) => {
   return (
-    <div className="flex flex-col bg-neutral-950 min-h-screen px-8 pt-36">
-      <div className="text-3xl text-white">F1 Logo</div>
-      <Link href="/drivers" className="text-neutral-400 semibold">
-        DRIVERS
-      </Link>
-      <Link href="/constructors" className="text-neutral-400 semibold">
-        CONSTRUCTORS
-      </Link>
-      <Link href="/races" className="text-neutral-400 semibold">
-        RACES
-      </Link>
-      <Link href="/circuits" className="text-neutral-400 semibold">
-        CIRCUITS
-      </Link>
-      <div className="pt-8 flex flex-col">
-        <Link href="/circuits" className="text-neutral-400 semibold">
-          NEWS
-        </Link>
-        <Link href="/circuits" className="text-neutral-400 semibold">
-          SETTINGS
-        </Link>
+    <div className=" flex flex-row text-neutral-400 min-h-20 text-md semibold py-2 hover:cursor-pointer hover:text-white transition-all">
+      <i className="bi bi-columns text-white"></i>
+      <Link href={link}>{caption}</Link>
+    </div>
+  );
+};
+
+export default function Navbar({}: Props) {
+  const [isOpen, setIsOpen] = useState();
+  return (
+    <div
+      className={`transition-all duration-300 flex flex-col bg-neutral-950 min-h-screen items-start ${
+        isOpen ? "w-[250px]" : "w-14"
+      } px-6 pt-36 overflow-hidden p-4`}
+    >
+      <button
+        className="text-white"
+        onClick={() => setIsOpen((prev) => !isOpen)}
+      >
+        {isOpen ? "<" : ">"}
+      </button>
+      <NavTag link="/drivers" caption="DRIVERS" />
+      <NavTag link="/constructors" caption="CONSTRUCTORS" />
+      <NavTag link="/races" caption="RACE CALENDAR" />
+      <NavTag link="/circuits" caption="CIRCUITS" />
+      <div className="pt-6 flex flex-col">
+        <NavTag link="/news" caption="NEWS" />
+        <NavTag link="/settings" caption="SETTINGS" />
       </div>
     </div>
   );
