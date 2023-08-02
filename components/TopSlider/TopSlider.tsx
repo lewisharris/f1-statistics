@@ -8,7 +8,7 @@ export default function TopSlider({}: Props) {
       <div className="bg-red-200 p-4 w-44 rounded-xl">
         <div className="">image</div>
         <div className="">
-          <div className="">number</div>
+          d<div className="">number</div>
           <div className="">Divider</div>
           <div className="">
             <div className="">Name</div>
