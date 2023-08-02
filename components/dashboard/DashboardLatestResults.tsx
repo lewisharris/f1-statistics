@@ -4,8 +4,6 @@ import { animated } from "@react-spring/web";
 import Loading from "../generic/Loading";
 import Error from "../generic/Error";
 
-interface DashboardLatestResultsProps {}
-
 interface DriverProps {
   fastestLap: object;
   position: number;
@@ -55,25 +53,24 @@ const Driver = ({
   );
 };
 
-export default function DashboardLatestResults({}: DashboardLatestResultsProps): ReactElement {
+interface DashboardLatestResultsProps {
+  data: object;
+}
+
+export default function DashboardLatestResults({
+  data
+}: DashboardLatestResultsProps): ReactElement {
   const [raceResults, setRaceResults] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const fetchResults = async () => {
-    fetch("https://ergast.com/api/f1/current/last/results.json")
-      .then(res => res.json())
-      .then(data => setRaceResults(data.MRData.RaceTable.Races[0]))
-      .then(() => setIsLoading(false))
-      .catch(error => {
-        setIsLoading(false);
-        setIsError(true);
-      });
-  };
-
   useEffect(() => {
     setIsLoading(true);
-    fetchResults();
+    const setDriverData = async () => {
+      await setRaceResults(data.RaceTable.Races[0]);
+      setIsLoading(false);
+    };
+    setDriverData();
   }, []);
 
   return (
@@ -106,6 +103,7 @@ export default function DashboardLatestResults({}: DashboardLatestResultsProps):
                 firstName={driver.Driver.givenName}
                 fastestLap={driver.FastestLap}
                 status={driver.positionText}
+                key={driver.position}
               />
             );
           })
