@@ -19,7 +19,7 @@ export default function Navbar({}: Props) {
   const [isOpen, setIsOpen] = useState();
   return (
     <div
-      className={`transition-all duration-300 flex flex-col bg-neutral-950 min-h-screen items-start ${
+      className={`hidden sm:block transition-all duration-300 flex flex-col bg-neutral-950 min-h-screen items-start ${
         isOpen ? "w-[250px]" : "w-14"
       } px-6 pt-36 overflow-hidden p-4`}
     >

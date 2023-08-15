@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { animated } from "@react-spring/web";
 import Loading from "../generic/Loading";
 import Error from "../generic/Error";
+import Link from "next/link";
 
 interface DriverProps {
   fastestLap: object;
@@ -10,46 +11,50 @@ interface DriverProps {
   firstName: string;
   lastName: string;
   status: string;
+  permanentNumber: string;
 }
 const Driver = ({
   fastestLap,
   position,
   firstName,
   lastName,
-  status
+  status,
+  permanentNumber
 }: DriverProps): ReactElement => {
   return (
-    <animated.div className="flex flex-row py-2 text-white text-sm border-b-[1px] border-zinc-900 h-9">
-      <div className="pr-1">{position}</div>
-      <div className="pr-2 text-zinc-400">|</div>
-      <div className="flex flex-row">
+    <Link href={`/drivers/${permanentNumber}`}>
+      <animated.div className="flex flex-row py-2 text-white text-sm border-b-[1px] border-zinc-900 h-9">
+        <div className="pr-1">{position}</div>
+        <div className="pr-2 text-zinc-400">|</div>
+        <div className="flex flex-row">
+          <div
+            className={`px-1 font-light ${
+              fastestLap?.rank === "1" ? "text-violet-500" : "text-white"
+            }`}
+          >
+            {firstName}
+          </div>
+          <div
+            className={`font-bold ${
+              fastestLap?.rank === "1" ? "text-violet-500" : "text-white"
+            }`}
+          >
+            {lastName}
+          </div>
+        </div>
         <div
-          className={`px-1 font-light ${
+          className={`ml-auto ${
             fastestLap?.rank === "1" ? "text-violet-500" : "text-white"
           }`}
         >
-          {firstName}
+          {status === "R"
+            ? "DNF"
+            : fastestLap?.Time
+            ? fastestLap.Time.time
+            : null}
         </div>
-        <div
-          className={`font-bold ${
-            fastestLap?.rank === "1" ? "text-violet-500" : "text-white"
-          }`}
-        >
-          {lastName}
-        </div>
-      </div>
-      <div
-        className={`ml-auto ${
-          fastestLap?.rank === "1" ? "text-violet-500" : "text-white"
-        }`}
-      >
-        {status === "R"
-          ? "DNF"
-          : fastestLap?.Time
-          ? fastestLap.Time.time
-          : null}
-      </div>
-    </animated.div>
+      </animated.div>
+    </Link>
   );
 };
 
@@ -74,7 +79,7 @@ export default function DashboardLatestResults({
   }, []);
 
   return (
-    <div className="flex flex-col bg-[#101317] drop-shadow-lg p-6">
+    <div className="flex flex-col bg-[#101317] drop-shadow-2xl p-6 m-4 rounded-2xl grow shrink-0">
       <h3 className="text-lg text-zinc-500">LATEST RACE RESULTS</h3>
       <div className="text-white text-xs py-2">
         {raceResults.raceName?.toUpperCase()}
@@ -104,6 +109,7 @@ export default function DashboardLatestResults({
                 fastestLap={driver.FastestLap}
                 status={driver.positionText}
                 key={driver.position}
+                permanentNumber={driver.Driver.permanentNumber}
               />
             );
           })

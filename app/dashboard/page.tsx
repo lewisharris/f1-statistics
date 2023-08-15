@@ -3,6 +3,7 @@ import DashboardLeaderboard from "../../components/dashboard/DashboardLeaderboar
 import DashboardLatestResults from "../../components/dashboard/DashboardLatestResults";
 import DashboardNextRaceDetails from "../../components/dashboard/DashboardNextRaceDetails";
 import DashboardRaceSchedule from "../../components/dashboard/DashboardRaceSchedule";
+import DashboardSeasonGraph from "../../components/dashboard/DashboardSeasonGraph";
 
 export default async function Dashboard() {
   const [latestResultsRes, raceSeasonRes] = await Promise.all([
@@ -18,14 +19,18 @@ export default async function Dashboard() {
     raceSeasonRes.json()
   ]);
   return (
-    <main className="bg-[#1c1f24] w-full p-4">
-      <div className="flex flex-row">
-        <DashboardLeaderboard />
-        <DashboardLeaderboard />
+    <main className="bg-[#1c1f24] max-w-full sm:p-4">
+      <div className="flex flex-col sm:flex-row min-w-full">
+        <DashboardLeaderboard data={raceSeason.MRData} />
+        <DashboardLeaderboard data={raceSeason.MRData} />
       </div>
-      <div className="grid auto-cols-auto gap-6">
+      <div className="flex flex-row wrap">
         <DashboardLatestResults data={latestResults.MRData} />
-        <DashboardNextRaceDetails races={raceSeason.MRData.RaceTable.Races} />
+        <div>
+          <DashboardNextRaceDetails races={raceSeason.MRData.RaceTable.Races} />
+          <DashboardSeasonGraph />
+          <DashboardSeasonGraph />
+        </div>
         <DashboardRaceSchedule
           season={raceSeason.MRData.RaceTable.season}
           races={raceSeason.MRData.RaceTable.Races}
