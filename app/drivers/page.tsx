@@ -1,10 +1,12 @@
-import "../../components/TopSlider/TopSlider";
-import TopSlider from "../../components/TopSlider/TopSlider";
+import "../globals.css";
+
+
 
 export default function Drivers() {
   return (
-    <div className="flex flex-col w-full h-screen">
-      <TopSlider />
+    <div className="bg-[#1c1f24] max-w-full sm:p-4 h-screen">
+      <div>DRIVERS</div>
+      <div>DriverList</div>
     </div>
   );
 }

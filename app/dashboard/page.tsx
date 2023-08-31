@@ -8,18 +8,18 @@ import DashboardSeasonGraph from "../../components/dashboard/DashboardSeasonGrap
 export default async function Dashboard() {
   const [latestResultsRes, raceSeasonRes] = await Promise.all([
     fetch("https://ergast.com/api/f1/current/last/results.json", {
-      cache: "no-store"
+      cache: "no-store",
     }),
     fetch("http://ergast.com/api/f1/current.json", {
-      cache: "no-store"
-    })
+      cache: "no-store",
+    }),
   ]);
   const [latestResults, raceSeason] = await Promise.all([
     latestResultsRes.json(),
-    raceSeasonRes.json()
+    raceSeasonRes.json(),
   ]);
   return (
-    <main className="bg-[#1c1f24] max-w-full sm:p-4">
+    <div className="bg-[#1c1f24] max-w-full sm:p-4">
       <div className="flex flex-col sm:flex-row min-w-full">
         <DashboardLeaderboard data={raceSeason.MRData} />
         <DashboardLeaderboard data={raceSeason.MRData} />
@@ -36,6 +36,6 @@ export default async function Dashboard() {
           races={raceSeason.MRData.RaceTable.Races}
         />
       </div>
-    </main>
+    </div>
   );
 }
