@@ -3,7 +3,6 @@ import React, { ReactElement, useState, useEffect } from "react";
 import DriverCard from "./DriverCard";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import { GrNext, GrPrevious } from "react-icons/Gr";
 import { IconContext } from "react-icons";
 
 interface Props {
@@ -12,12 +11,12 @@ interface Props {
 
 export default function DriverCarousel({ driverData }: Props): ReactElement {
   const data = driverData;
-  const handleDragStart = e => e.preventDefault();
+  const handleDragStart = (e) => e.preventDefault();
   const responsive = {
     0: { items: 3 },
     568: { items: 2 },
     1024: { items: 4 },
-    2000: { items: 6 }
+    2000: { items: 6 },
   };
 
   return (
@@ -34,7 +33,7 @@ export default function DriverCarousel({ driverData }: Props): ReactElement {
           return (
             <div className=" h-full w-[10%] absolute top-0 left-0 z-10 flex flex-col justify-center pb-8">
               <IconContext.Provider value={{ color: "white", size: "30px" }}>
-                <GrPrevious />
+                <div>back</div>
               </IconContext.Provider>
             </div>
           );
@@ -43,12 +42,12 @@ export default function DriverCarousel({ driverData }: Props): ReactElement {
           return (
             <div className=" h-full w-[10%] absolute top-0 right-0 z-10 flex flex-col justify-center pb-8">
               <IconContext.Provider value={{ color: "white", size: "30px" }}>
-                <GrNext />
+                <div>next</div>
               </IconContext.Provider>
             </div>
           );
         }}
-        items={data.map(item => {
+        items={data.map((item) => {
           return (
             <DriverCard
               driverId={item.Driver.driverId}

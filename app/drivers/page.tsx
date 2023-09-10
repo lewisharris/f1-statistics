@@ -5,12 +5,12 @@ export default async function Drivers() {
   const driversDataRes = await fetch(
     "http://ergast.com/api/f1/2023/drivers.json",
     {
-      cache: "force-cache"
+      cache: "force-cache",
     }
   );
   const driversData = await driversDataRes.json();
   const currentDrivers = driversData?.MRData?.DriverTable?.Drivers.map(
-    driver => {
+    (driver) => {
       return <TeamDriverCard driver={driver} />;
     }
   );

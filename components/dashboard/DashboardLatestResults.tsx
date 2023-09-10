@@ -19,7 +19,7 @@ const Driver = ({
   firstName,
   lastName,
   status,
-  permanentNumber
+  permanentNumber,
 }: DriverProps): ReactElement => {
   return (
     <Link href={`/drivers/${permanentNumber}`}>
@@ -63,7 +63,7 @@ interface DashboardLatestResultsProps {
 }
 
 export default function DashboardLatestResults({
-  data
+  data,
 }: DashboardLatestResultsProps): ReactElement {
   const [raceResults, setRaceResults] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +79,7 @@ export default function DashboardLatestResults({
   }, []);
 
   return (
-    <div className="flex flex-col bg-[#101317] drop-shadow-2xl p-6 m-4 rounded-2xl grow shrink-0">
+    <div className="flex flex-col bg-[#101317] drop-shadow-2xl p-6 m-4 rounded-2xl grow shrink-0 ">
       <h3 className="text-lg text-zinc-500">LATEST RACE RESULTS</h3>
       <div className="text-white text-xs py-2">
         {raceResults.raceName?.toUpperCase()}
@@ -89,7 +89,7 @@ export default function DashboardLatestResults({
           <Loading />
         ) : isError ? (
           <>
-            {[...Array(20)].map(i => {
+            {[...Array(20)].map((i) => {
               return (
                 <div
                   className="flex flex-row py-2 text-white text-sm h-9 relative"
@@ -100,7 +100,7 @@ export default function DashboardLatestResults({
             <Error refresh={fetchResults} />
           </>
         ) : (
-          raceResults.Results?.map(driver => {
+          raceResults.Results?.map((driver) => {
             return (
               <Driver
                 position={driver.position}

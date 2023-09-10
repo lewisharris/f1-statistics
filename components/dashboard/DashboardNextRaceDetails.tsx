@@ -85,7 +85,7 @@ export default function DashboardNextRaceDetails({
         />
       </div>
       <div>
-        <ul className="flex flex-row">
+        <ul className="flex flex-col sm:flex-row">
           {/* If date/time has already passed then show "Event finished, or similar*/}
           {races[race].FirstPractice ? (
             <EventSegment

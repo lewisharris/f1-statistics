@@ -23,7 +23,10 @@ export default function Navbar({}: Props) {
         isOpen ? "w-[250px]" : "w-14"
       } px-6 pt-36 overflow-hidden p-4`}
     >
-      <button className="text-white" onClick={() => setIsOpen(prev => !isOpen)}>
+      <button
+        className="text-white"
+        onClick={() => setIsOpen((prev) => !isOpen)}
+      >
         {isOpen ? "<" : ">"}
       </button>
       <NavTag link="/dashboard" caption="DASHBOARD" />
