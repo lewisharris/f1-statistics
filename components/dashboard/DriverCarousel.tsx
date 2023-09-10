@@ -58,6 +58,7 @@ export default function DriverCarousel({ driverData }: Props): ReactElement {
               position={item.position}
               onDragStart={handleDragStart}
               role="presentation"
+              key={item.Driver.driverID}
             />
           );
         })}

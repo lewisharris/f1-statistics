@@ -1,5 +1,5 @@
 import "../../globals.css";
-import { animated, useSpring } from "react-spring"
+import { animated, useSpring } from "react-spring";
 
 export default async function DriverPage({ params }) {
   const { id } = params;
@@ -24,7 +24,7 @@ export default async function DriverPage({ params }) {
             />
             <h1 className="text-6xl font-bold">
               {Location.country.toUpperCase()}
-              <span className="text-red-600"> '23</span>
+              <span className="text-red-600"> &#39 23</span>
             </h1>
             <div className="flex flex-row min-w-full py-2">
               <h2 className="text-lg text-stone-400 grow">{circuitName}</h2>

@@ -50,7 +50,8 @@ export default function DashboardRaceSchedule({
       <div>{season}</div>
       <ul className="overflow-scroll">
         {races.map((race) => {
-          return <RaceScheduleCard race={race} />;
+          console.log(race);
+          return <RaceScheduleCard race={race} key={race.round} />;
         })}
       </ul>
     </div>

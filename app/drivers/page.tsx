@@ -11,7 +11,7 @@ export default async function Drivers() {
   const driversData = await driversDataRes.json();
   const currentDrivers = driversData?.MRData?.DriverTable?.Drivers.map(
     (driver) => {
-      return <TeamDriverCard driver={driver} />;
+      return <TeamDriverCard driver={driver} key={driver.driverId} />;
     }
   );
   // Get and sort constructors
