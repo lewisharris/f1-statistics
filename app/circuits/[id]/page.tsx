@@ -1,7 +1,12 @@
 import "../../globals.css";
 import { animated, useSpring } from "react-spring";
 
-export default async function DriverPage({ params }) {
+type CircuitsProps = {
+  params: any;
+};
+
+export default async function Circuits({ params }: CircuitsProps) {
+  console.log(params);
   const { id } = params;
   const circuitRes = await fetch(
     `http://ergast.com/api/f1/circuits/${id}.json`,
