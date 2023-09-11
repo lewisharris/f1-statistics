@@ -19,9 +19,14 @@ export default async function Circuits() {
           circuitName: name,
           Location: location,
         }: {
-          circuitId: String;
+          circuitId: string;
           circuitName: string;
-          Location: object;
+          Location: {
+            lat: string;
+            long: string;
+            locality: string;
+            country: string;
+          };
         }) => {
           return (
             <CircuitCard

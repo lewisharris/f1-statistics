@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 type Props = {
-  circuitId: number;
+  circuitId: string;
   name: string;
   location: { lat: string; long: string; locality: string; country: string };
 };
