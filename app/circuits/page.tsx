@@ -14,7 +14,15 @@ export default async function Circuits() {
     <div className="bg-[#1c1f24] max-w-full sm:p-4 h-screen ">
       Circuits page
       {circuitsData?.MRData?.CircuitTable.Circuits.map(
-        ({ circuitId: circuitId, circuitName: name, Location: location }) => {
+        ({
+          circuitId: circuitId,
+          circuitName: name,
+          Location: location,
+        }: {
+          circuitId: String;
+          circuitName: string;
+          Location: object;
+        }) => {
           return (
             <CircuitCard
               key={circuitId}
