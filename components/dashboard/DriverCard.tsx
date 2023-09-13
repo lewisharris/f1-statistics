@@ -41,7 +41,7 @@ export default function DriverCard({
         <div className="text-center">{`${suffixedPosition}`}</div>
         <img
           src={`./drivers/${permanentNumber}.jpg`}
-          alt={driverId}
+          alt={driverId.toString()}
           className="object-cover h-12 sm:h-24 rounded-xl w-full object-top group-hover:brightness-125 transition-all duration-100 ease-in-out"
         />
         <div className="flex flex-row mt-1">
