@@ -56,8 +56,6 @@ export default function DriverCarousel({ driverData }: Props): ReactElement {
               permanentNumber={item.Driver.permanentNumber}
               points={item.points}
               position={item.position}
-              onDragStart={handleDragStart}
-              role="presentation"
               key={item.Driver.driverID}
             />
           );
