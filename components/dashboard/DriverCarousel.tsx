@@ -6,7 +6,7 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import { IconContext } from "react-icons";
 
 interface Props {
-  driverData: object;
+  driverData: any;
 }
 
 export default function DriverCarousel({ driverData }: Props): ReactElement {
@@ -47,7 +47,7 @@ export default function DriverCarousel({ driverData }: Props): ReactElement {
             </div>
           );
         }}
-        items={data.map((item) => {
+        items={data.map((item: any) => {
           return (
             <DriverCard
               driverId={item.Driver.driverId}

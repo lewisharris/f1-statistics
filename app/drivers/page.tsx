@@ -10,7 +10,7 @@ export default async function Drivers() {
   );
   const driversData = await driversDataRes.json();
   const currentDrivers = driversData?.MRData?.DriverTable?.Drivers.map(
-    (driver) => {
+    (driver: any) => {
       return <TeamDriverCard driver={driver} key={driver.driverId} />;
     }
   );
