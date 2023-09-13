@@ -1,4 +1,4 @@
-import type { Metadata, Suspense } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "../components/navigation/Navbar";
 import { Suspense } from "react";
