@@ -10,6 +10,8 @@ interface DriverCardProps {
   permanentNumber: number;
   points: number;
   position: number;
+  onDragStart: any;
+  role: string;
 }
 
 export default function DriverCard({
