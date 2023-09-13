@@ -18,9 +18,9 @@ export default function DriverCard({
   givenName,
   permanentNumber,
   points,
-  position
+  position,
 }: DriverCardProps): ReactElement {
-  const createSuffix = position => {
+  const createSuffix = (position: number) => {
     var j = position % 10,
       k = position % 100;
     if (j == 1 && k != 11) {

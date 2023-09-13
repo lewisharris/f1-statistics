@@ -4,15 +4,22 @@ import { animated } from "@react-spring/web";
 import Loading from "../generic/Loading";
 import Error from "../generic/Error";
 import Link from "next/link";
+import { Race, RaceResults } from "../../types";
 
 interface DriverProps {
-  fastestLap: object;
+  fastestLap: {
+    AverageSpeed: { units: string; speed: string };
+    Time: { time: string };
+    lap: string;
+    rank: string;
+  };
   position: number;
   firstName: string;
   lastName: string;
   status: string;
   permanentNumber: string;
 }
+
 const Driver = ({
   fastestLap,
   position,
@@ -50,7 +57,7 @@ const Driver = ({
           {status === "R"
             ? "DNF"
             : fastestLap?.Time
-            ? fastestLap.Time.time
+            ? fastestLap.Time?.time
             : null}
         </div>
       </animated.div>
@@ -59,20 +66,28 @@ const Driver = ({
 };
 
 interface DashboardLatestResultsProps {
-  data: object;
+  data: {
+    RaceTable: { Races: Array<any> };
+    limit: string;
+    offset: string;
+    series: string;
+    total: string;
+    url: string;
+    xmlns: string;
+  };
 }
 
 export default function DashboardLatestResults({
   data,
 }: DashboardLatestResultsProps): ReactElement {
-  const [raceResults, setRaceResults] = useState({});
+  const [raceResults, setRaceResults] = useState<RaceResults>();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     const setDriverData = async () => {
-      await setRaceResults(data.RaceTable.Races[0]);
+      await setRaceResults(data?.RaceTable?.Races[0]);
       setIsLoading(false);
     };
     setDriverData();
@@ -82,7 +97,7 @@ export default function DashboardLatestResults({
     <div className="flex flex-col bg-[#101317] drop-shadow-2xl p-6 m-4 rounded-2xl grow shrink-0 ">
       <h3 className="text-lg text-zinc-500">LATEST RACE RESULTS</h3>
       <div className="text-white text-xs py-2">
-        {raceResults.raceName?.toUpperCase()}
+        {raceResults?.raceName?.toUpperCase()}
       </div>
       <div>
         {isLoading ? (
@@ -97,10 +112,9 @@ export default function DashboardLatestResults({
                 ></div>
               );
             })}
-            <Error refresh={fetchResults} />
           </>
         ) : (
-          raceResults.Results?.map((driver) => {
+          raceResults?.Results?.map((driver: any) => {
             return (
               <Driver
                 position={driver.position}

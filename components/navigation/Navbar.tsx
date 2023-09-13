@@ -16,17 +16,14 @@ const NavTag = ({ link, caption, icon }: NavTagProps) => {
 };
 
 export default function Navbar({}: Props) {
-  const [isOpen, setIsOpen] = useState();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div
       className={`hidden sm:block transition-all duration-300 flex flex-col bg-neutral-950 min-h-screen items-start ${
         isOpen ? "w-[250px]" : "w-14"
       } px-6 pt-36 overflow-hidden p-4`}
     >
-      <button
-        className="text-white"
-        onClick={() => setIsOpen((prev) => !isOpen)}
-      >
+      <button className="text-white" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? "<" : ">"}
       </button>
       <NavTag link="/dashboard" caption="DASHBOARD" />

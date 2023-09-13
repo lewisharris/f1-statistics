@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DriverCarousel from "./DriverCarousel";
 
-type Props = {};
+type Props = { raceData: {} };
 
 export default async function DashboardDriverLeaderboard({}: Props) {
   const driverStandingsRes = await fetch(

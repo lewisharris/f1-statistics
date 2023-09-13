@@ -1,13 +1,14 @@
 "use client";
 import React, { ReactElement, useEffect, useState } from "react";
 import Image from "next/image";
+import { Race, Event } from "../../types";
 
 interface DashboardNextRaceDetailsProps {
-  races: Array<object>;
+  races: Array<Race>;
 }
 
 interface EventSegmentProps {
-  event: object;
+  event: Event;
   eventName: string;
 }
 
@@ -39,30 +40,10 @@ export default function DashboardNextRaceDetails({
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const day = currentDate.getDay();
-  console.log(year);
-  console.log(month);
-  console.log(day);
-
   const raceDate = new Date(races[race].date).toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "long",
   });
-
-  const raceDates = races.map((race) => {
-    const splitDate = race.date.split("-");
-    if (splitDate[0] < year) {
-      return;
-    }
-    if (splitDate[1] < month) {
-      return;
-    }
-    if (splitDate[1] === month && splitDate[2] < day) {
-      return;
-    }
-    return splitDate;
-  });
-
-  console.log(raceDates);
 
   return (
     <div className="flex flex-col bg-[#101317] drop-shadow-2xl text-white m-4  shrink-0 grow rounded-2xl">

@@ -21,8 +21,8 @@ export default async function Dashboard() {
   return (
     <div className="bg-[#1c1f24] max-w-[100vw] max-h-[100vh] overflow-scroll sm:p-4">
       <div className="flex flex-col sm:flex-row min-w-full">
-        <DashboardLeaderboard data={raceSeason.MRData} />
-        <DashboardLeaderboard data={raceSeason.MRData} />
+        <DashboardLeaderboard raceData={raceSeason.MRData} />
+        <DashboardLeaderboard raceData={raceSeason.MRData} />
       </div>
       <div className="flex flex-col sm:flex-row">
         <DashboardLatestResults data={latestResults.MRData} />

@@ -11,7 +11,7 @@ interface Props {
 
 export default function DriverCarousel({ driverData }: Props): ReactElement {
   const data = driverData;
-  const handleDragStart = (e) => e.preventDefault();
+  const handleDragStart = (e: any) => e.preventDefault();
   const responsive = {
     0: { items: 3 },
     568: { items: 2 },

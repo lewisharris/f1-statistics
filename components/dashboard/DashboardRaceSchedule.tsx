@@ -1,9 +1,10 @@
 "use client";
 import React, { ReactElement } from "react";
 import Link from "next/link";
+import { Race } from "../../types";
 
 interface RaceScheduleCardProps {
-  race: object;
+  race: Race;
 }
 
 function RaceScheduleCard({ race }: RaceScheduleCardProps): ReactElement {
@@ -35,7 +36,7 @@ function RaceScheduleCard({ race }: RaceScheduleCardProps): ReactElement {
 
 interface Props {
   season: number;
-  races: Array<object>;
+  races: Array<Race>;
 }
 
 export default function DashboardRaceSchedule({
@@ -49,8 +50,7 @@ export default function DashboardRaceSchedule({
       </h4>
       <div>{season}</div>
       <ul className="overflow-scroll">
-        {races.map((race) => {
-          console.log(race);
+        {races.map((race: Race) => {
           return <RaceScheduleCard race={race} key={race.round} />;
         })}
       </ul>
