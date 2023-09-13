@@ -10,13 +10,5 @@ export default function TeamDriverCard({ driver }: Props): ReactElement {
   const router = useRouter();
   console.log(driver);
   const driverNumber = driver.permanentNumber;
-  return (
-    <div
-      onClick={() => {
-        router.push({ pathname: `/drivers/${driverNumber}`, query: driver });
-      }}
-    >
-      {driver.driverId}
-    </div>
-  );
+  return <div>{driver.driverId}</div>;
 }
