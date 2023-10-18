@@ -19,7 +19,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex flex-row">
-          <Navbar />
           <div className="flex flex-col">
             <div className="bg-zinc-950">
               <div className="h-14 p-2 flex flex-row justify-end items-center">
